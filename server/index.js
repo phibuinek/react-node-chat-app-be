@@ -4,7 +4,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import authRoutes from "./routes/AuthRoutes.js";
-
+import path from "path";
 dotenv.config();
 
 const app = express();
@@ -17,6 +17,11 @@ app.use(
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     credentials: true,
   })
+);
+
+app.use(
+  "/uploads/profiles",
+  express.static(path.join(process.cwd(), "uploads/profiles"))
 );
 
 app.use(cookieParser());
